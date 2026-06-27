@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L O S T - F I L E S | Contact</title>
-  <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  <title>L O S T - F I L E S | CONTACT</title>
+  
+  <!-- תוקן: ללא / -->
+  <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
   <style>
+    body {
+      background: #000000;
+      color: #00ff00;
+      margin: 0;
+      padding: 20px 0;
+      min-height: 100vh;
+      font-family: "Courier New", Courier, monospace;
+    }
+
     .ascii {
       font-family: "Courier New", Courier, monospace;
       font-size: 15px;
@@ -20,7 +31,6 @@
       width: fit-content;
       padding: 20px 25px;
       direction: ltr;
-      unicode-bidi: bidi-override;
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -49,18 +59,23 @@
       50% { opacity: 0; }
     }
 
-    .contact-link {
-      color: #00ff00;
+    /* לינקים ירוקים תמיד (גם אחרי ביקור) */
+    a {
+      color: #00ff00 !important;
       text-decoration: none;
     }
 
-    .contact-link:hover {
-      color: #ffffff;
+    a:hover {
+      color: #ffffff !important;
       text-decoration: underline;
     }
 
+    a:visited {
+      color: #00ff00 !important;
+    }
+
     @media (max-width: 768px) {
-      .ascii { font-size: 6.5px; padding: 12px 8px; }
+      .ascii { font-size: 6.5px; padding: 12px 8px; margin: 20px auto; }
       .terminal-output { padding: 0 12px; font-size: 15px; }
       .cursor { width: 7px; height: 15px; }
     }
@@ -89,14 +104,14 @@ const lines = [
   "",
   "you can reach me at:",
   "",
-  "- <a href='https://x.com/neverofflin3' target='_blank' class='contact-link'>Twitter / X</a>",
+  "- <a href='https://x.com/neverofflin3' target='_blank'>Twitter / X</a>",
   "",
-  "- <a href='https://t.me/kill_the_banks' target='_blank' class='contact-link'>Telegram</a>",
+  "- <a href='https://t.me/kill_the_banks' target='_blank'>Telegram</a>",
   "",
+  "you can email me at : ",
   "kryptokat@killthebanks.com",
-  "let's talk.",
   "",
-  "<a href='/index.html' class='menu-item'>&gt; back to main terminal</a>"
+  "<a href='index.html'>&gt; back to main terminal</a>"   <!-- תוקן -->
 ];
 
 const typingText = document.getElementById('typing-text');
@@ -110,11 +125,13 @@ function skipAnimation() {
   isSkipped = true;
   fullText = lines.join('\n');
   typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  document.querySelector('.cursor').style.display = 'none';
+  const cursor = document.querySelector('.cursor');
+  if (cursor) cursor.style.display = 'none';
 }
 
 function type() {
-  if (isSkipped) return;
+  if (isSkipped || !typingText) return;
+
   if (lineIndex < lines.length) {
     const currentLine = lines[lineIndex];
     if (charIndex < currentLine.length) {
