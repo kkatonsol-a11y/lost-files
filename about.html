@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L O S T - F I L E S | About</title>
   
-  <!-- חשוב: ללא / בתחילת השם -->
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
   <style>
@@ -58,17 +57,6 @@
       50% { opacity: 0; }
     }
 
-    .menu-item {
-      color: #00ff00;
-      text-decoration: none;
-    }
-
-    .menu-item:hover {
-      color: #ffffff;
-      background-color: rgba(0, 255, 0, 0.1);
-      text-decoration: underline;
-    }
-
     @media (max-width: 768px) {
       body { padding: 10px 8px; }
       .ascii { 
@@ -77,99 +65,4 @@
         margin: 20px auto; 
       }
       .terminal-output { 
-        padding: 0 12px; 
-        font-size: 15px; 
-      }
-      .cursor { 
-        width: 7px; 
-        height: 15px; 
-      }
-    }
-  </style>
-</head>
-<body>
-
-<pre class="ascii">
-$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
-$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
-$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
-$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  
-$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
-$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
-$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
-\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
-</pre>
-
-<div class="terminal-output">
-  <span id="typing-text"></span><span class="cursor"> </span>
-</div>
-
-<script>
-const lines = [
-  "user@kryptokat:~$ about.txt",
-  "",
-  "hello, I'm kk™.",
-  "",
-  "creative direction & visual producer.",
-  "",
-  "i specialize in:",
-  "- creative direction & branding",
-  "- marketing content creation",
-  "- illustration, character design & worldbuilding",
-  "- 3D (a bit)",
-  "- web development & programming",
-  "- general graphic design",
-  "- hybrid creative workflows (AI + traditional media)",
-  "",
-  "currently lost in the files.",
-  "",
-  "<a href='index.html' class='menu-item'>&gt; back to main terminal</a>"
-];
-
-const typingText = document.getElementById('typing-text');
-let fullText = "";
-let lineIndex = 0;
-let charIndex = 0;
-let isSkipped = false;
-
-// ====================== SKIP ANIMATION ======================
-function skipAnimation() {
-  if (isSkipped) return;
-  isSkipped = true;
-
-  fullText = lines.join('\n');
-  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  document.querySelector('.cursor').style.display = 'none';
-}
-
-function type() {
-  if (isSkipped) return;
-
-  if (lineIndex < lines.length) {
-    const currentLine = lines[lineIndex];
-
-    if (charIndex < currentLine.length) {
-      fullText += currentLine.charAt(charIndex);
-      charIndex++;
-    } else {
-      fullText += "\n";
-      lineIndex++;
-      charIndex = 0;
-    }
-    
-    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-    setTimeout(type, charIndex === 0 ? 400 : 20);
-  }
-}
-
-// Event Listeners
-document.addEventListener('click', skipAnimation);
-document.addEventListener('keydown', (e) => {
-  if (e.key === " " || e.key === "Enter") skipAnimation();
-});
-
-type();
-</script>
-
-</body>
-</html>
+        padding: 0 12px
