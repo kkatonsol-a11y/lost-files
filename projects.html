@@ -55,16 +55,13 @@
       50% { opacity: 0; }
     }
 
-    /* לינקים - ירוקים + קו ירוק על hover */
     a {
       color: #00ff00 !important;
       text-decoration: none;
     }
-
     a:hover {
-      color: #00ff00 !important;           /* נשאר ירוק */
-      border-bottom: 1px solid #00ff00;   /* קו ירוק מתחת */
-      padding-bottom: 2px;
+      color: #ffffff !important;
+      border-bottom: 1px solid #00ff00;
     }
 
     .projects-container {
@@ -169,13 +166,17 @@ let lineIndex = 0;
 let charIndex = 0;
 let isSkipped = false;
 
+function hideCursor() {
+  const cursor = document.querySelector('.cursor');
+  if (cursor) cursor.style.display = 'none';
+}
+
 function skipAnimation() {
   if (isSkipped) return;
   isSkipped = true;
   fullText = lines.join('\n');
   typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  const cursor = document.querySelector('.cursor');
-  if (cursor) cursor.style.display = 'none';
+  hideCursor();
 }
 
 function type() {
@@ -195,9 +196,13 @@ function type() {
     
     typingText.innerHTML = fullText.replace(/\n/g, '<br>');
     setTimeout(type, charIndex === 0 ? 400 : 20);
+  } else {
+    // האנימציה הסתיימה - מסתירים את הסמן
+    setTimeout(hideCursor, 300);
   }
 }
 
+// Event Listeners
 document.addEventListener('click', skipAnimation);
 document.addEventListener('keydown', (e) => {
   if (e.key === " " || e.key === "Enter") skipAnimation();
