@@ -38,8 +38,10 @@
     }
 
     .project-item {
-      padding: 20px 0;
+      padding: 22px 0;
       border-bottom: 1px dashed #00ff0044;
+      text-align: left;           /* כפייה לשמאל */
+      direction: ltr;             /* כפייה לשמאל */
     }
 
     .project-item:last-child {
@@ -60,19 +62,18 @@
       color: #00ff00;
       text-decoration: none;
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .read-more:hover {
       color: #ffffff;
-      text-decoration: underline;
     }
 
     .back-link {
-      color: #00ff00;
+      color: #00ff00 !important;
       text-decoration: none;
       display: inline-block;
-      margin: 40px 20px 0;
+      margin: 50px 20px 30px;
     }
 
     .back-link:hover {
@@ -115,8 +116,8 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 
 </div>
 
-<!-- לינק חזרה בסוף -->
-<div style="text-align: left; max-width: 720px; margin: 0 auto; padding: 0 20px;">
+<!-- BACK LINK - בסוף -->
+<div class="projects-container">
   <a href="index.html" class="back-link">&lt; BACK TO MAIN TERMINAL</a>
 </div>
 
