@@ -14,6 +14,7 @@
       margin: 0;
       padding: 20px 0;
       min-height: 100vh;
+      font-family: "Courier New", Courier, monospace;
     }
 
     .ascii {
@@ -29,7 +30,6 @@
       width: fit-content;
       padding: 20px 25px;
       direction: ltr;
-      unicode-bidi: bidi-override;
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -40,7 +40,6 @@
       margin: 25px auto;
       max-width: 720px;
       padding: 0 20px;
-      font-family: "Courier New", Courier, monospace;
       color: #00ff00;
     }
 
@@ -58,11 +57,95 @@
     }
 
     @media (max-width: 768px) {
-      body { padding: 10px 8px; }
-      .ascii { 
-        font-size: 6.5px; 
-        padding: 12px 8px; 
-        margin: 20px auto; 
-      }
-      .terminal-output { 
-        padding: 0 12px
+      .ascii { font-size: 6.5px; padding: 12px 8px; margin: 20px auto; }
+      .terminal-output { padding: 0 12px; font-size: 15px; }
+      .cursor { width: 7px; height: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<pre class="ascii">
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
+</pre>
+
+<div class="terminal-output">
+  <span id="typing-text"></span><span class="cursor"> </span>
+</div>
+
+<script>
+// ====================== TYPING ANIMATION ======================
+const lines = [
+  "user@kryptokat:~$ about.txt",
+  "",
+  "hello, I'm kk™.",
+  "",
+  "creative direction & visual producer.",
+  "",
+  "i specialize in:",
+  "- creative direction & branding",
+  "- marketing content creation",
+  "- illustration, character design & worldbuilding",
+  "- 3D (a bit)",
+  "- web development & programming",
+  "- general graphic design",
+  "- hybrid creative workflows (AI + traditional media)",
+  "",
+  "currently lost in the files.",
+  "",
+  "<a href='index.html'>&gt; back to main terminal</a>"
+];
+
+const typingText = document.getElementById('typing-text');
+let fullText = "";
+let lineIndex = 0;
+let charIndex = 0;
+let isSkipped = false;
+
+function skipAnimation() {
+  if (isSkipped) return;
+  isSkipped = true;
+  fullText = lines.join('\n');
+  if (typingText) typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+  const cursor = document.querySelector('.cursor');
+  if (cursor) cursor.style.display = 'none';
+}
+
+function type() {
+  if (isSkipped || !typingText) return;
+
+  if (lineIndex < lines.length) {
+    const currentLine = lines[lineIndex];
+
+    if (charIndex < currentLine.length) {
+      fullText += currentLine.charAt(charIndex);
+      charIndex++;
+    } else {
+      fullText += "\n";
+      lineIndex++;
+      charIndex = 0;
+    }
+    
+    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+    setTimeout(type, charIndex === 0 ? 400 : 20);
+  }
+}
+
+// Event Listeners
+document.addEventListener('click', skipAnimation);
+document.addEventListener('keydown', (e) => {
+  if (e.key === " " || e.key === "Enter") skipAnimation();
+});
+
+type();   // התחל אנימציה
+</script>
+
+</body>
+</html>
