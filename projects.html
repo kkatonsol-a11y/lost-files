@@ -4,85 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L O S T - F I L E S | Projects</title>
-  <link href="style.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
   <style>
-    body { background:#000; color:#00ff00; font-family: "Courier New", monospace; }
-    .projects-grid {
-      max-width: 900px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+    body {
+      background: #000000;
+      color: #00ff00;
+      margin: 0;
+      padding: 20px 0;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .ascii {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 15px;
+      line-height: 1.05;
+      white-space: pre;
+      text-align: left;
+      margin: 30px auto;
+      color: #00ff00;
+      background: #000000;
+      display: block;
+      width: fit-content;
+      padding: 20px 25px;
+      direction: ltr;
+      max-width: 100%;
+    }
+
+    .terminal-output {
+      max-width: 720px;
+      margin: 0 auto;
       padding: 0 20px;
     }
-    .project-card {
-      background: #111;
-      border: 1px solid #00ff00;
-      padding: 20px;
-      transition: all 0.3s;
+
+    .projects-list {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    .project-card:hover {
-      border-color: #00ff88;
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(0,255,0,0.2);
+
+    .project-item {
+      padding: 18px 0;
+      border-bottom: 1px dashed #00ff0044;
     }
-    .project-title { font-size: 1.3em; margin: 10px 0; }
-    .project-desc { opacity: 0.9; line-height: 1.5; }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-title {
+      font-size: 1.25em;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+
     .read-more {
       color: #00ff00;
       text-decoration: none;
-      margin-top: 15px;
+      margin-top: 10px;
       display: inline-block;
     }
-    .read-more:hover { color: #fff; }
+
+    .read-more:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .back-link {
+      color: #00ff00;
+      text-decoration: none;
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+      .ascii { font-size: 6.5px; padding: 12px 8px; }
+    }
   </style>
 </head>
 <body>
 
-<pre class="ascii" style="margin:30px auto; font-size:14px;">
-[ PROJECTS ARCHIVE ]
+<pre class="ascii">
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$$      $$ |  $$ |      $$$$$     \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
 </pre>
 
-<div class="projects-grid" id="projects-container">
-  <!-- יתמלא ע"י JS -->
+<div class="terminal-output">
+  <a href="index.html" class="back-link">&lt; BACK TO MAIN TERMINAL</a>
 </div>
 
-<script>
-// נתוני הפרויקטים - כאן תוסיף פרויקטים חדשים
-const projects = [
-  {
-    id: "01",
-    title: "מותג X",
-    shortDesc: "עיצוב מותג מלא + זהות ויזואלית + אתר",
-    link: "project-01.html"
-  },
-  {
-    id: "02",
-    title: "סדרת איורים - NEON SOUL",
-    shortDesc: "סדרת דמויות ואיורים דיגיטליים",
-    link: "project-02.html"
-  },
-  {
-    id: "03",
-    title: "פלטפורמה - KILL THE BANKS",
-    shortDesc: "אתר + מיתוג + תוכן",
-    link: "project-03.html"
-  }
-];
+<div class="projects-list">
+  <h2 style="text-align:center; margin-bottom:30px;">// SELECTED PROJECTS</h2>
+  
+  <div class="project-item">
+    <div class="project-title">01 — MOUTG X</div>
+    <div class="project-desc">עיצוב מותג מלא, זהות ויזואלית ואתר תדמית.</div>
+    <a href="project-01.html" class="read-more">&gt; VIEW PROJECT</a>
+  </div>
 
-const container = document.getElementById('projects-container');
+  <div class="project-item">
+    <div class="project-title">02 — NEON SOUL</div>
+    <div class="project-desc">סדרת איורים דיגיטליים + עולם ויזואלי.</div>
+    <a href="project-02.html" class="read-more">&gt; VIEW PROJECT</a>
+  </div>
 
-projects.forEach(p => {
-  container.innerHTML += `
-    <div class="project-card">
-      <div class="project-title">${p.title}</div>
-      <div class="project-desc">${p.shortDesc}</div>
-      <a href="${p.link}" class="read-more">&gt; READ MORE</a>
-    </div>
-  `;
-});
-</script>
+  <div class="project-item">
+    <div class="project-title">03 — KILL THE BANKS</div>
+    <div class="project-desc">מיתוג, אתר וחומרי שיווק לפלטפורמה.</div>
+    <a href="project-03.html" class="read-more">&gt; VIEW PROJECT</a>
+  </div>
+</div>
 
 </body>
 </html>
