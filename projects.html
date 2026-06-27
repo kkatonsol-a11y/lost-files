@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L O S T - F I L E S | PROJECTS</title>
   
-  <link href="style.css" rel="stylesheet" type="text/css" media="all">
-  
   <style>
     body {
       background: #000000;
@@ -78,7 +76,7 @@
       cursor: pointer;
     }
 
-    /* DRAGGABLE MODAL - שחור לחלוטין */
+    /* DRAGGABLE MODAL */
     .modal {
       display: none;
       position: fixed;
@@ -87,7 +85,6 @@
       transform: translate(-50%, -50%);
       background: #000000;
       border: 2px solid #00ff00;
-      box-shadow: none;
       z-index: 1000;
       width: 90%;
       max-width: 900px;
@@ -104,10 +101,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .modal-title {
-      font-size: 1.3em;
     }
 
     .close-btn {
@@ -133,27 +126,19 @@
       width: 100%;
       border: 1px solid #00ff0044;
     }
-
-    .back-container {
-      max-width: 720px;
-      margin: 60px auto 40px;
-      padding: 0 20px;
-      text-align: left;
-      direction: ltr;
-    }
   </style>
 </head>
 <body>
 
 <pre class="ascii">
-$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
-$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
-$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
-$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$$      $$ |  $$ |      $$$$$     \$$$$$$\  
-$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
-$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
-$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
-\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\      $$$$$$$$\ $$$$$$\ $$\      $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|     $$  _____|\_$$  _|$$ |     $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |        $$ |      $$ |  $$ |       $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |        $$$$$$    $$ |  $$ |       $$$$$     \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |        $$  __|   $$ |  $$ |       $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |        $$ |      $$ |  $$ |       $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |        $$ |     $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|        \__|     \______|\________|\________| \______/ 
 </pre>
 
 <div class="terminal-output">
@@ -162,29 +147,19 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 
 <div class="projects-container">
   <div class="project-item" onclick="openProject(0)">
-    <div class="project-title">01 — MOUTG X</div>
-    <div class="project-desc">עיצוב מותג מלא, זהות ויזואלית, אתר תדמית וחומרי שיווק.</div>
+    <div>01 — MOUTG X</div>
   </div>
-
   <div class="project-item" onclick="openProject(1)">
-    <div class="project-title">02 — NEON SOUL</div>
-    <div class="project-desc">סדרת איורים דיגיטליים ועולם ויזואלי.</div>
+    <div>02 — NEON SOUL</div>
   </div>
-
   <div class="project-item" onclick="openProject(2)">
-    <div class="project-title">03 — KILL THE BANKS</div>
-    <div class="project-desc">מיתוג מלא, אתר ותוכן שיווקי לפלטפורמה.</div>
+    <div>03 — KILL THE BANKS</div>
   </div>
 </div>
 
-<div class="back-container">
-  <a href="index.html">&gt; BACK TO MAIN TERMINAL</a>
-</div>
-
-<!-- DRAGGABLE MODAL -->
 <div id="project-modal" class="modal">
   <div class="modal-header" id="modal-header">
-    <div class="modal-title" id="modal-title"></div>
+    <div id="modal-title"></div>
     <div class="close-btn" onclick="closeModal()">×</div>
   </div>
   <div class="modal-content">
@@ -194,70 +169,67 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 </div>
 
 <script>
-// נתוני הפרויקטים
 const projectsData = [
-  {
-    title: "01 — MOUTG X",
-    desc: "עיצוב מותג מלא, זהות ויזואלית, אתר תדמית וחומרי שיווק.",
-    images: ["images/projects/moutg1.jpg", "images/projects/moutg2.jpg"]
-  },
-  {
-    title: "02 — NEON SOUL",
-    desc: "סדרת איורים דיגיטליים ועולם ויזואלי.",
-    images: ["images/projects/neon1.jpg", "images/projects/neon2.jpg"]
-  },
-  {
-    title: "03 — KILL THE BANKS",
-    desc: "מיתוג מלא, אתר ותוכן שיווקי לפלטפורמה.",
-    images: ["images/projects/ktb1.jpg", "images/projects/ktb2.jpg"]
-  }
+  { title: "01 — MOUTG X", desc: "עיצוב מותג מלא.", images: [] },
+  { title: "02 — NEON SOUL", desc: "איורים דיגיטליים.", images: [] },
+  { title: "03 — KILL THE BANKS", desc: "מיתוג מלא.", images: [] }
 ];
 
-let isDragging = false;
+const modal = document.getElementById('project-modal');
+const header = document.getElementById('modal-header');
+let isDragging = false, offsetX, offsetY;
+
+function openProject(index) {
+  const p = projectsData[index];
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').innerHTML = `<p>${p.desc}</p>`;
+  
+  modal.style.display = 'block';
+  modal.style.top = '50%';
+  modal.style.left = '50%';
+  modal.style.transform = 'translate(-50%, -50%)';
+}
+
+function closeModal() { modal.style.display = 'none'; }
+
+header.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  const rect = modal.getBoundingClientRect();
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    modal.style.left = (e.clientX - offsetX) + 'px';
+    modal.style.top = (e.clientY - offsetY) + 'px';
+    modal.style.transform = 'none';
+  }
+});
+
+document.addEventListener('mouseup', () => isDragging = false);
+
 // Typing Animation
 const lines = ["user@kryptokat:~$ projects.txt", "", "selected works archive", ""];
 const typingText = document.getElementById('typing-text');
-let fullText = "", lineIndex = 0, charIndex = 0, isSkipped = false;
-
-function hideCursor() {
-  const cursor = document.querySelector('.cursor');
-  if (cursor) cursor.style.display = 'none';
-}
-
-function skipAnimation() {
-  if (isSkipped) return;
-  isSkipped = true;
-  fullText = lines.join('\n');
-  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  hideCursor();
-}
+let fullText = "", lineIndex = 0, charIndex = 0;
 
 function type() {
-  if (isSkipped || !typingText) return;
   if (lineIndex < lines.length) {
-    const currentLine = lines[lineIndex];
-    if (charIndex < currentLine.length) {
-      fullText += currentLine.charAt(charIndex);
+    if (charIndex < lines[lineIndex].length) {
+      fullText += lines[lineIndex].charAt(charIndex);
       charIndex++;
+      typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+      setTimeout(type, 20);
     } else {
       fullText += "\n";
       lineIndex++;
       charIndex = 0;
+      setTimeout(type, 400);
     }
-    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-    setTimeout(type, charIndex === 0 ? 400 : 20);
-  } else {
-    setTimeout(hideCursor, 400);
   }
 }
-
-document.addEventListener('click', skipAnimation);
-document.addEventListener('keydown', (e) => {
-  if (e.key === " " || e.key === "Enter") skipAnimation();
-});
-
 type();
 </script>
-
 </body>
 </html>
