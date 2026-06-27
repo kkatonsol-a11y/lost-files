@@ -49,7 +49,7 @@
       50% { opacity: 0; }
     }
 
-       /* לינקים רגילים ופשוטים */
+    /* לינקים רגילים */
     a.menu-item {
       color: #00ff00 !important;
       text-decoration: none;
@@ -58,7 +58,7 @@
     a.menu-item:hover {
       color: #ffffff !important;
       text-decoration: underline;
-      text-underline-offset: 4px;   /* מרווח מהטקסט */
+      text-underline-offset: 4px;
     }
 
     @media (max-width: 768px) {
@@ -146,19 +146,18 @@ function makeLinksClickable() {
   let html = typingText.innerHTML;
   
   html = html.replace(/&gt; about\.html/g, 
-    '<a href="about.html">&gt; about.html</a>');
+    '<a href="about.html" class="menu-item">&gt; about.html</a>');
   
   html = html.replace(/&gt; projects\.html/g, 
-    '<a href="projects.html">&gt; projects.html</a>');
+    '<a href="projects.html" class="menu-item">&gt; projects.html</a>');
   
   html = html.replace(/&gt; random\.html/g, 
-    '<a href="random.html">&gt; random.html</a>');
+    '<a href="random.html" class="menu-item">&gt; random.html</a>');
   
   html = html.replace(/&gt; contact\.html/g, 
-    '<a href="contact.html">&gt; contact.html</a>');
+    '<a href="contact.html" class="menu-item">&gt; contact.html</a>');
   
   typingText.innerHTML = html;
-}
 }
 
 // Event Listeners
