@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L O S T - F I L E S | Projects</title>
+  
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
   <style>
@@ -12,6 +13,7 @@
       color: #00ff00;
       margin: 0;
       padding: 20px 0;
+      min-height: 100vh;
       font-family: "Courier New", Courier, monospace;
     }
 
@@ -31,17 +33,52 @@
       max-width: 100%;
     }
 
+    .terminal-output {
+      direction: ltr;
+      text-align: left;
+      margin: 25px auto;
+      max-width: 720px;
+      padding: 0 20px;
+      color: #00ff00;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: #00ff00;
+      width: 9px;
+      height: 18px;
+      vertical-align: middle;
+      animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* לינקים ירוקים תמיד */
+    a {
+      color: #00ff00 !important;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ffffff !important;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #00ff00 !important;
+    }
+
     .projects-container {
       max-width: 720px;
-      margin: 0 auto;
+      margin: 40px auto;
       padding: 0 20px;
     }
 
     .project-item {
       padding: 22px 0;
       border-bottom: 1px dashed #00ff0044;
-      text-align: left;           /* כפייה לשמאל */
-      direction: ltr;             /* כפייה לשמאל */
+      text-align: left;
+      direction: ltr;
     }
 
     .project-item:last-child {
@@ -69,15 +106,10 @@
       color: #ffffff;
     }
 
-    .back-link {
-      color: #00ff00 !important;
-      text-decoration: none;
-      display: inline-block;
-      margin: 50px 20px 30px;
-    }
-
-    .back-link:hover {
-      color: #ffffff;
+    @media (max-width: 768px) {
+      .ascii { font-size: 6.5px; padding: 12px 8px; }
+      .terminal-output { padding: 0 12px; font-size: 15px; }
+      .cursor { width: 7px; height: 15px; }
     }
   </style>
 </head>
@@ -93,6 +125,10 @@ $$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |    
 $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
 \________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
 </pre>
+
+<div class="terminal-output">
+  <span id="typing-text"></span><span class="cursor"> </span>
+</div>
 
 <div class="projects-container">
 
@@ -116,10 +152,59 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 
 </div>
 
-<!-- BACK LINK - בסוף -->
-<div class="projects-container">
-  <a href="index.html" class="back-link">&lt; BACK TO MAIN TERMINAL</a>
-</div>
+<script>
+// ====================== TYPING ANIMATION ======================
+const lines = [
+  "user@kryptokat:~$ projects.txt",
+  "",
+  "selected works archive",
+  "",
+  "loading projects...",
+  ""
+];
+
+const typingText = document.getElementById('typing-text');
+let fullText = "";
+let lineIndex = 0;
+let charIndex = 0;
+let isSkipped = false;
+
+function skipAnimation() {
+  if (isSkipped) return;
+  isSkipped = true;
+  fullText = lines.join('\n');
+  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+  document.querySelector('.cursor').style.display = 'none';
+}
+
+function type() {
+  if (isSkipped || !typingText) return;
+
+  if (lineIndex < lines.length) {
+    const currentLine = lines[lineIndex];
+
+    if (charIndex < currentLine.length) {
+      fullText += currentLine.charAt(charIndex);
+      charIndex++;
+    } else {
+      fullText += "\n";
+      lineIndex++;
+      charIndex = 0;
+    }
+    
+    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+    setTimeout(type, charIndex === 0 ? 400 : 20);
+  }
+}
+
+// Event Listeners
+document.addEventListener('click', skipAnimation);
+document.addEventListener('keydown', (e) => {
+  if (e.key === " " || e.key === "Enter") skipAnimation();
+});
+
+type();
+</script>
 
 </body>
 </html>
