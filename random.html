@@ -3,65 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L O S T - F I L E S | PROJECTS</title>
+  <title>L O S T - F I L E S | RANDOM</title>
   <link href="style.css" rel="stylesheet">
   
   <style>
     body { background:#000; color:#00ff00; font-family:"Courier New", monospace; }
-    .gallery {
+    .random-grid {
       max-width: 1100px;
       margin: 40px auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
       padding: 0 20px;
     }
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
+    .random-item {
       border: 1px solid #00ff0044;
-      cursor: pointer;
+      overflow: hidden;
     }
-    .gallery-item img {
+    .random-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s;
     }
-    .gallery-item:hover img {
-      transform: scale(1.08);
-    }
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.9));
-      color: #00ff00;
-      padding: 20px 15px 15px;
-      font-size: 1.1em;
+    .random-item:hover img {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
 
-<pre class="ascii"> [ PROJECT GALLERY ] </pre>
+<pre class="ascii"> [ RANDOM FILES ] </pre>
 
-<div class="gallery">
-  <a href="project-moutgx.html" class="gallery-item">
-    <img src="images/projects/moutg-thumb.jpg" alt="MOUTG X">
-    <div class="gallery-overlay">MOUTG X</div>
-  </a>
-
-  <a href="project-neonsoul.html" class="gallery-item">
-    <img src="images/projects/neon-thumb.jpg" alt="NEON SOUL">
-    <div class="gallery-overlay">NEON SOUL</div>
-  </a>
-
-  <a href="project-ktb.html" class="gallery-item">
-    <img src="images/projects/ktb-thumb.jpg" alt="KILL THE BANKS">
-    <div class="gallery-overlay">KILL THE BANKS</div>
-  </a>
+<div class="random-grid">
+  <div class="random-item">
+    <img src="images/random/1.jpg" alt="">
+  </div>
+  <div class="random-item">
+    <img src="images/random/2.jpg" alt="">
+  </div>
+  <div class="random-item">
+    <img src="images/random/3.jpg" alt="">
+  </div>
+  <!-- הוסף עוד כמה -->
 </div>
 
 </body>
