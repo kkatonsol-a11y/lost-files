@@ -49,6 +49,17 @@
       50% { opacity: 0; }
     }
 
+    /* לינקים כמו בשאר האתר */
+    a.menu-item {
+      color: #00ff00 !important;
+      text-decoration: none;
+    }
+
+    a.menu-item:hover {
+      color: #ffffff !important;
+      border-bottom: 1px solid #00ff00;
+    }
+
     @media (max-width: 768px) {
       .ascii { font-size: 6.5px; padding: 12px 8px; }
       .terminal-output { padding: 0 12px; font-size: 14.5px; }
@@ -94,12 +105,17 @@ let lineIndex = 0;
 let charIndex = 0;
 let isSkipped = false;
 
+function hideCursor() {
+  const cursor = document.querySelector('.cursor');
+  if (cursor) cursor.style.display = 'none';
+}
+
 function skipAnimation() {
   if (isSkipped) return;
   isSkipped = true;
   fullText = lines.join('\n');
   typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  document.querySelector('.cursor').style.display = 'none';
+  hideCursor();
   makeLinksClickable();
 }
 
@@ -119,6 +135,7 @@ function type() {
     setTimeout(type, charIndex === 0 ? 400 : 18);
   } else {
     setTimeout(() => {
+      hideCursor();
       makeLinksClickable();
     }, 600);
   }
@@ -148,7 +165,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === " " || e.key === "Enter") skipAnimation();
 });
 
-type();   // Start typing animation
+type();
 </script>
 </body>
 </html>
