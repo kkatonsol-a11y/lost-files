@@ -49,96 +49,38 @@
       animation: blink 0.6s step-end infinite;
     }
 
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
+    @keyframes blink { 50% { opacity: 0; } }
 
-    a {
-      color: #00ff00 !important;
-      text-decoration: none;
-    }
-    a:hover {
-      color: #ffffff !important;
-      border-bottom: 1px solid #00ff00;
-    }
+    a { color: #00ff00 !important; text-decoration: none; }
+    a:hover { color: #ffffff !important; border-bottom: 1px solid #00ff00; }
 
-    .projects-container {
-      max-width: 720px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+    .projects-container { max-width: 720px; margin: 40px auto; padding: 0 20px; }
+    .project-item { padding: 22px 0; border-bottom: 1px dashed #00ff0044; text-align: left; direction: ltr; cursor: pointer; }
 
-    .project-item {
-      padding: 22px 0;
-      border-bottom: 1px dashed #00ff0044;
-      text-align: left;
-      direction: ltr;
-      cursor: pointer;
-    }
-
-    /* DRAGGABLE MODAL */
     .modal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
+      display: none; position: fixed; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      background: #000000;
-      border: 2px solid #00ff00;
-      z-index: 1000;
-      width: 90%;
-      max-width: 900px;
-      max-height: 90vh;
-      overflow: hidden;
+      background: #000000; border: 2px solid #00ff00;
+      z-index: 1000; width: 90%; max-width: 900px;
     }
-
-    .modal-header {
-      background: #000000;
-      padding: 10px 15px;
-      border-bottom: 2px solid #00ff00;
-      cursor: move;
-      user-select: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close-btn {
-      font-size: 28px;
-      cursor: pointer;
-      color: #00ff00;
-    }
-
-    .modal-content {
-      padding: 20px;
-      overflow-y: auto;
-      max-height: calc(90vh - 55px);
-    }
-
-    .modal-images {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .modal-images img {
-      width: 100%;
-      border: 1px solid #00ff0044;
-    }
+    .modal-header { background: #000000; padding: 10px 15px; border-bottom: 2px solid #00ff00; cursor: move; display: flex; justify-content: space-between; align-items: center; }
+    .close-btn { font-size: 28px; cursor: pointer; color: #00ff00; }
+    .modal-content { padding: 20px; }
+    
+    .back-container { max-width: 720px; margin: 60px auto 40px; padding: 0 20px; text-align: left; direction: ltr; }
   </style>
 </head>
 <body>
 
 <pre class="ascii">
-$$\       $$$$$$\   $$$$$$\ $$$$$$$$\      $$$$$$$$\ $$$$$$\ $$\      $$$$$$$$\  $$$$$$\  
-$$ |     $$  __$$\ $$  __$$\\__$$  __|     $$  _____|\_$$  _|$$ |     $$  _____|$$  __$$\ 
-$$ |     $$ /  $$ |$$ /  \__|  $$ |        $$ |      $$ |  $$ |       $$ |      $$ /  \__|
-$$ |     $$ |  $$ |\$$$$$$\    $$ |        $$$$$$    $$ |  $$ |       $$$$$     \$$$$$$\  
-$$ |     $$ |  $$ | \____$$\   $$ |        $$  __|   $$ |  $$ |       $$  __|    \____$$\ 
-$$ |     $$ |  $$ |$$\   $$ |  $$ |        $$ |      $$ |  $$ |       $$ |      $$\   $$ |
-$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |        $$ |     $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
-\________|\______/  \______/   \__|        \__|     \______|\________|\________| \______/ 
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\    $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|   $$  _____|\_$$  _|$$ |     $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |      $$ |      $$ |  $$ |       $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |      $$$$$$    $$ |  $$ |       $$$$$     \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |      $$  __|   $$ |  $$ |       $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |      $$ |      $$ |  $$ |       $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |      $$ |     $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|      \__|     \______|\________|\________| \______/ 
 </pre>
 
 <div class="terminal-output">
@@ -146,15 +88,13 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |        $$ |     $$$$$$\ $$$$$$$$\ $$$$$$$$\ 
 </div>
 
 <div class="projects-container">
-  <div class="project-item" onclick="openProject(0)">
-    <div>01 — MOUTG X</div>
-  </div>
-  <div class="project-item" onclick="openProject(1)">
-    <div>02 — NEON SOUL</div>
-  </div>
-  <div class="project-item" onclick="openProject(2)">
-    <div>03 — KILL THE BANKS</div>
-  </div>
+  <div class="project-item" onclick="openProject(0)">01 — MOUTG X</div>
+  <div class="project-item" onclick="openProject(1)">02 — NEON SOUL</div>
+  <div class="project-item" onclick="openProject(2)">03 — KILL THE BANKS</div>
+</div>
+
+<div class="back-container">
+  <a href="index.html">&gt; BACK TO MAIN TERMINAL</a>
 </div>
 
 <div id="project-modal" class="modal">
@@ -162,17 +102,14 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |        $$ |     $$$$$$\ $$$$$$$$\ $$$$$$$$\ 
     <div id="modal-title"></div>
     <div class="close-btn" onclick="closeModal()">×</div>
   </div>
-  <div class="modal-content">
-    <div id="modal-desc"></div>
-    <div id="modal-images" class="modal-images"></div>
-  </div>
+  <div class="modal-content" id="modal-desc"></div>
 </div>
 
 <script>
 const projectsData = [
-  { title: "01 — MOUTG X", desc: "עיצוב מותג מלא.", images: [] },
-  { title: "02 — NEON SOUL", desc: "איורים דיגיטליים.", images: [] },
-  { title: "03 — KILL THE BANKS", desc: "מיתוג מלא.", images: [] }
+  { title: "01 — MOUTG X", desc: "עיצוב מותג מלא." },
+  { title: "02 — NEON SOUL", desc: "איורים דיגיטליים." },
+  { title: "03 — KILL THE BANKS", desc: "מיתוג מלא." }
 ];
 
 const modal = document.getElementById('project-modal');
@@ -180,10 +117,8 @@ const header = document.getElementById('modal-header');
 let isDragging = false, offsetX, offsetY;
 
 function openProject(index) {
-  const p = projectsData[index];
-  document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-desc').innerHTML = `<p>${p.desc}</p>`;
-  
+  document.getElementById('modal-title').textContent = projectsData[index].title;
+  document.getElementById('modal-desc').innerHTML = projectsData[index].desc;
   modal.style.display = 'block';
   modal.style.top = '50%';
   modal.style.left = '50%';
@@ -209,7 +144,7 @@ document.addEventListener('mousemove', (e) => {
 
 document.addEventListener('mouseup', () => isDragging = false);
 
-// Typing Animation
+// Typing
 const lines = ["user@kryptokat:~$ projects.txt", "", "selected works archive", ""];
 const typingText = document.getElementById('typing-text');
 let fullText = "", lineIndex = 0, charIndex = 0;
