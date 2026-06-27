@@ -8,44 +8,52 @@
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
   <style>
-    body { background: #000000; color: #00ff00; margin:0; padding:20px 0; min-height:100vh; }
-
-    .ascii { /* אותו עיצוב כמו קודם */ 
+    .ascii {
       font-family: "Courier New", Courier, monospace;
-      font-size: 15px; line-height: 1.05; white-space: pre;
-      margin: 30px auto; color: #00ff00; background: #000000;
-      padding: 20px 25px; direction: ltr; max-width: 100%;
+      font-size: 15px;
+      line-height: 1.05;
+      white-space: pre;
+      text-align: left;
+      margin: 30px auto;
+      color: #00ff00;
+      background: #000000;
+      display: block;
+      width: fit-content;
+      padding: 20px 25px;
+      direction: ltr;
+      unicode-bidi: bidi-override;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
-    .terminal-output { margin: 25px auto; max-width: 720px; padding: 0 20px; }
-
-    /* ====================== BLOG ====================== */
-    .blog-terminal {
-      background: #0a0a0a;
-      border: 2px solid #00ff00;
+    .terminal-output {
+      direction: ltr;
+      text-align: left;
+      margin: 25px auto;
       max-width: 720px;
-      margin: 40px auto;
-      padding: 15px;
+      padding: 0 20px;
+      font-family: "Courier New", Courier, monospace;
+      color: #00ff00;
     }
 
-    .blog-header {
-      background: #111;
-      padding: 12px 16px;
-      border-bottom: 2px solid #00ff00;
-      font-weight: bold;
-      margin-bottom: 10px;
+    .cursor {
+      display: inline-block;
+      background-color: #00ff00;
+      width: 9px;
+      height: 18px;
+      vertical-align: middle;
+      animation: blink 0.6s step-end infinite;
     }
 
-    .blog-post {
-      padding: 15px;
-      border-bottom: 1px dashed #00ff0044;
-      margin-bottom: 15px;
+    @keyframes blink {
+      50% { opacity: 0; }
     }
 
-    .blog-post:last-child { border-bottom: none; margin-bottom: 0; }
-
-    .blog-date { opacity: 0.6; font-size: 0.9em; margin-bottom: 6px; }
-    .blog-title { font-size: 1.2em; margin: 8px 0; }
+    @media (max-width: 768px) {
+      .ascii { font-size: 6.5px; padding: 12px 8px; }
+      .terminal-output { padding: 0 12px; font-size: 14.5px; }
+      .cursor { width: 7px; height: 15px; }
+    }
   </style>
 </head>
 <body>
@@ -65,49 +73,7 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
   <span id="typing-text"></span><span class="cursor"> </span>
 </div>
 
-<!-- ====================== BLOG ====================== -->
-<div class="blog-terminal">
-  <div class="blog-header">● //lost-files_updates.log</div>
-  <div id="blog-posts"></div>
-</div>
-
 <script>
-// ====================== POSTS DATA (כאן תוסיף פוסטים) ======================
-const posts = [
-  {
-    date: "2026-06-26",
-    title: "חזרתי לכתוב",
-    content: "אחרי תקופה ארוכה של שקט, אני חוזר ללכת לאיבוד בקבצים. יש כמה פרויקטים חדשים בדרך..."
-  },
-  {
-    date: "2026-06-20",
-    title: "עיצוב חדש לטרמינל",
-    content: "שיפרתי את העיצוב של האתר. עכשיו הכל יותר נקי ויותר ירוק."
-  },
-  {
-    date: "2026-06-10",
-    title: "התחלתי פרויקט חדש",
-    content: "עובד על משהו מעניין שמשלב AI + עיצוב מסורתי. פרטים בהמשך."
-  }
-];
-
-// ====================== RENDER BLOG ======================
-function renderBlog() {
-  const container = document.getElementById('blog-posts');
-  container.innerHTML = '';
-
-  posts.forEach(post => {
-    const div = document.createElement('div');
-    div.className = 'blog-post';
-    div.innerHTML = `
-      <div class="blog-date">${post.date}</div>
-      <div class="blog-title">${post.title}</div>
-      <div>${post.content}</div>
-    `;
-    container.appendChild(div);
-  });
-}
-
 // ====================== TYPING ANIMATION ======================
 const lines = [
   "user@kryptokat:~$ welcome.txt",
@@ -152,27 +118,37 @@ function type() {
     typingText.innerHTML = fullText.replace(/\n/g, '<br>');
     setTimeout(type, charIndex === 0 ? 400 : 18);
   } else {
-    setTimeout(makeLinksClickable, 600);
+    setTimeout(() => {
+      makeLinksClickable();
+    }, 600);
   }
 }
 
 function makeLinksClickable() {
   let html = typingText.innerHTML;
-  html = html.replace(/&gt; about\.html/g, '<a href="about.html" class="menu-item">&gt; about.html</a>');
-  html = html.replace(/&gt; projects\.html/g, '<a href="projects.html" class="menu-item">&gt; projects.html</a>');
-  html = html.replace(/&gt; random\.html/g, '<a href="random.html" class="menu-item">&gt; random.html</a>');
-  html = html.replace(/&gt; contact\.html/g, '<a href="contact.html" class="menu-item">&gt; contact.html</a>');
+  
+  html = html.replace(/&gt; about\.html/g, 
+    '<a href="about.html" class="menu-item">&gt; about.html</a>');
+  
+  html = html.replace(/&gt; projects\.html/g, 
+    '<a href="projects.html" class="menu-item">&gt; projects.html</a>');
+  
+  html = html.replace(/&gt; random\.html/g, 
+    '<a href="random.html" class="menu-item">&gt; random.html</a>');
+  
+  html = html.replace(/&gt; contact\.html/g, 
+    '<a href="contact.html" class="menu-item">&gt; contact.html</a>');
+  
   typingText.innerHTML = html;
 }
 
-// Start everything
+// Event Listeners
 document.addEventListener('click', skipAnimation);
 document.addEventListener('keydown', (e) => {
   if (e.key === " " || e.key === "Enter") skipAnimation();
 });
 
-type();
-renderBlog();   // טוען את הבלוג
+type();   // Start typing animation
 </script>
 </body>
 </html>
