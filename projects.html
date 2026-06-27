@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L O S T - F I L E S | PROJECTS</title>
+  <title>L O S T - F I L E S | Projects</title>
   
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
@@ -17,7 +17,7 @@
       font-family: "Courier New", Courier, monospace;
     }
 
-    .ascii {
+    .ascii { /* אותו עיצוב כמו קודם */ 
       font-family: "Courier New", Courier, monospace;
       font-size: 15px;
       line-height: 1.05;
@@ -55,18 +55,8 @@
       50% { opacity: 0; }
     }
 
-    /* לינקים ירוקים תמיד */
-    a {
-      color: #00ff00 !important;
-      text-decoration: none;
-    }
-    a:hover {
-      color: #ffffff !important;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #00ff00 !important;
-    }
+    a { color: #00ff00 !important; text-decoration: none; }
+    a:hover { color: #ffffff !important; text-decoration: underline; }
 
     .projects-container {
       max-width: 720px;
@@ -81,35 +71,16 @@
       direction: ltr;
     }
 
-    .project-item:last-child {
-      border-bottom: none;
-    }
+    .project-item:last-child { border-bottom: none; }
 
-    .project-title {
-      font-size: 1.25em;
-      margin-bottom: 8px;
-    }
+    .project-title { font-size: 1.25em; margin-bottom: 8px; }
+    .project-desc { opacity: 0.85; line-height: 1.6; }
 
-    .project-desc {
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    .read-more {
+    .back-link {
       color: #00ff00;
       text-decoration: none;
       display: inline-block;
-      margin-top: 12px;
-    }
-
-    .read-more:hover {
-      color: #ffffff;
-    }
-
-    @media (max-width: 768px) {
-      .ascii { font-size: 6.5px; padding: 12px 8px; }
-      .terminal-output { padding: 0 12px; font-size: 15px; }
-      .cursor { width: 7px; height: 15px; }
+      margin: 50px 20px 30px;
     }
   </style>
 </head>
@@ -152,6 +123,11 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 
 </div>
 
+<!-- כפתור חזרה מתחת לפרויקטים -->
+<div class="projects-container">
+  <a href="index.html" class="back-link">&lt; BACK TO MAIN TERMINAL</a>
+</div>
+
 <script>
 // ====================== TYPING ANIMATION ======================
 const lines = [
@@ -159,9 +135,11 @@ const lines = [
   "",
   "selected works archive",
   "",
-  "loading projects...",
-  "",
-  "<a href='index.html'>&gt; back to main terminal</a>"   <!-- כפתור חזרה כמו ב-About -->
+  "available pages:",
+  "> about.html",
+  "> contact.html",
+  "> random.html",
+  ""
 ];
 
 const typingText = document.getElementById('typing-text');
@@ -175,8 +153,7 @@ function skipAnimation() {
   isSkipped = true;
   fullText = lines.join('\n');
   typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  const cursor = document.querySelector('.cursor');
-  if (cursor) cursor.style.display = 'none';
+  document.querySelector('.cursor').style.display = 'none';
 }
 
 function type() {
@@ -199,7 +176,6 @@ function type() {
   }
 }
 
-// Event Listeners
 document.addEventListener('click', skipAnimation);
 document.addEventListener('keydown', (e) => {
   if (e.key === " " || e.key === "Enter") skipAnimation();
