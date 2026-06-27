@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
-  </head>
-  <body>
-  </body>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L O S T - F I L E S | PROJECTS</title>
+  <link href="style.css" rel="stylesheet">
+  
+  <style>
+    body { background:#000; color:#00ff00; font-family:"Courier New", monospace; }
+    .projects-grid {
+      max-width: 900px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+    .project-card {
+      background: #111;
+      border: 1px solid #00ff00;
+      padding: 20px;
+      transition: all 0.2s;
+    }
+    .project-card:hover {
+      border-color: #00ff88;
+      transform: translateY(-3px);
+    }
+    .project-title { font-size: 1.3em; margin: 10px 0; }
+    .project-desc { opacity: 0.9; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<pre class="ascii"> [ PROJECTS ARCHIVE ] </pre>
+
+<div class="projects-grid">
+  <a href="project-moutgx.html" class="project-card">
+    <div class="project-title">01 — MOUTG X</div>
+    <div class="project-desc">עיצוב מותג מלא + אתר תדמית.</div>
+  </a>
+
+  <a href="project-neonsoul.html" class="project-card">
+    <div class="project-title">02 — NEON SOUL</div>
+    <div class="project-desc">סדרת איורים דיגיטליים.</div>
+  </a>
+
+  <a href="project-ktb.html" class="project-card">
+    <div class="project-title">03 — KILL THE BANKS</div>
+    <div class="project-desc">מיתוג + אתר לפלטפורמה.</div>
+  </a>
+</div>
+
+</body>
 </html>
