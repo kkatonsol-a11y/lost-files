@@ -8,7 +8,89 @@
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
   <style>
-    /* ... אותו style כמו קודם ... */
+    body {
+      background: #000000;
+      color: #00ff00;
+      margin: 0;
+      padding: 20px 0;
+      min-height: 100vh;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .ascii {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 15px;
+      line-height: 1.05;
+      white-space: pre;
+      text-align: left;
+      margin: 30px auto;
+      color: #00ff00;
+      background: #000000;
+      display: block;
+      width: fit-content;
+      padding: 20px 25px;
+      direction: ltr;
+      max-width: 100%;
+    }
+
+    .terminal-output {
+      direction: ltr;
+      text-align: left;
+      margin: 25px auto;
+      max-width: 720px;
+      padding: 0 20px;
+      color: #00ff00;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: #00ff00;
+      width: 9px;
+      height: 18px;
+      vertical-align: middle;
+      animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    a {
+      color: #00ff00 !important;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ffffff !important;
+      border-bottom: 1px solid #00ff00;
+    }
+
+    .projects-container {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .project-item {
+      padding: 22px 0;
+      border-bottom: 1px dashed #00ff0044;
+      text-align: left;
+      direction: ltr;
+      cursor: pointer;
+    }
+
+    .project-item:hover {
+      opacity: 0.9;
+    }
+
+    .project-title {
+      font-size: 1.25em;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      opacity: 0.85;
+      line-height: 1.6;
+    }
 
     /* MODAL */
     .modal {
@@ -23,80 +105,118 @@
     }
 
     .modal-content {
-      background: #111;
+      background: #111111;
       border: 2px solid #00ff00;
-      max-width: 800px;
+      max-width: 850px;
       width: 90%;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 20px;
+      padding: 25px;
       position: relative;
     }
 
     .close-btn {
       position: absolute;
       top: 15px;
-      right: 20px;
-      font-size: 28px;
+      right: 25px;
+      font-size: 32px;
       cursor: pointer;
       color: #00ff00;
     }
 
     .modal-images {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 15px;
-      margin: 20px 0;
+      margin: 25px 0;
     }
 
     .modal-images img {
       width: 100%;
       border: 1px solid #00ff0044;
     }
+
+    @media (max-width: 768px) {
+      .ascii { font-size: 6.5px; padding: 12px 8px; }
+      .modal-content { padding: 15px; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ... ASCII + typing ... -->
+<pre class="ascii">
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$$      $$ |  $$ |      $$$$$     \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
+</pre>
+
+<div class="terminal-output">
+  <span id="typing-text"></span><span class="cursor"> </span>
+</div>
 
 <div class="projects-container">
+
   <div class="project-item" onclick="openProject(0)">
     <div class="project-title">01 — MOUTG X</div>
-    <div class="project-desc">עיצוב מותג מלא...</div>
-    <span class="read-more">&gt; VIEW PROJECT</span>
+    <div class="project-desc">עיצוב מותג מלא, זהות ויזואלית, אתר תדמית וחומרי שיווק.</div>
   </div>
 
-  <!-- אותו דבר לפרויקטים האחרים עם onclick="openProject(1)" וכו' -->
+  <div class="project-item" onclick="openProject(1)">
+    <div class="project-title">02 — NEON SOUL</div>
+    <div class="project-desc">סדרת איורים דיגיטליים ועולם ויזואלי.</div>
+  </div>
+
+  <div class="project-item" onclick="openProject(2)">
+    <div class="project-title">03 — KILL THE BANKS</div>
+    <div class="project-desc">מיתוג מלא, אתר ותוכן שיווקי לפלטפורמה.</div>
+  </div>
+
 </div>
 
 <!-- MODAL -->
 <div id="project-modal" class="modal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">×</span>
-    <div id="modal-title" style="font-size:1.4em; margin-bottom:10px;"></div>
-    <div id="modal-desc"></div>
+    <div id="modal-title" style="font-size:1.5em; margin-bottom:15px;"></div>
+    <div id="modal-desc" style="margin-bottom:20px; opacity:0.9;"></div>
     <div id="modal-images" class="modal-images"></div>
   </div>
 </div>
 
 <script>
-// נתוני פרויקטים
+// נתוני הפרויקטים - כאן תוסיף את הפרטים שלך
 const projectsData = [
   {
     title: "01 — MOUTG X",
     desc: "עיצוב מותג מלא, זהות ויזואלית, אתר תדמית וחומרי שיווק.",
-    images: ["images/projects/moutg1.jpg", "images/projects/moutg2.jpg", "images/projects/moutg3.jpg"]
+    images: ["images/projects/moutg1.jpg", "images/projects/moutg2.jpg"]
   },
-  // הוסף כאן פרויקטים נוספים
+  {
+    title: "02 — NEON SOUL",
+    desc: "סדרת איורים דיגיטליים ועולם ויזואלי.",
+    images: ["images/projects/neon1.jpg", "images/projects/neon2.jpg", "images/projects/neon3.jpg"]
+  },
+  {
+    title: "03 — KILL THE BANKS",
+    desc: "מיתוג מלא, אתר ותוכן שיווקי לפלטפורמה.",
+    images: ["images/projects/ktb1.jpg", "images/projects/ktb2.jpg"]
+  }
 ];
 
 function openProject(index) {
   const p = projectsData[index];
-  document.getElementById('modal-title').innerHTML = p.title;
+  document.getElementById('modal-title').textContent = p.title;
   document.getElementById('modal-desc').innerHTML = p.desc;
 
   const imagesDiv = document.getElementById('modal-images');
-  imagesDiv.innerHTML = p.images.map(src => `<img src="${src}" alt="">`).join('');
+  imagesDiv.innerHTML = p.images.map(src => 
+    `<img src="${src}" alt="${p.title}">`
+  ).join('');
 
   document.getElementById('project-modal').style.display = 'flex';
 }
@@ -109,6 +229,64 @@ function closeModal() {
 document.getElementById('project-modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
+
+// ====================== TYPING ANIMATION ======================
+const lines = [
+  "user@kryptokat:~$ projects.txt",
+  "",
+  "selected works archive",
+  "",
+  "loading projects...",
+  ""
+];
+
+const typingText = document.getElementById('typing-text');
+let fullText = "";
+let lineIndex = 0;
+let charIndex = 0;
+let isSkipped = false;
+
+function hideCursor() {
+  const cursor = document.querySelector('.cursor');
+  if (cursor) cursor.style.display = 'none';
+}
+
+function skipAnimation() {
+  if (isSkipped) return;
+  isSkipped = true;
+  fullText = lines.join('\n');
+  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+  hideCursor();
+}
+
+function type() {
+  if (isSkipped || !typingText) return;
+
+  if (lineIndex < lines.length) {
+    const currentLine = lines[lineIndex];
+
+    if (charIndex < currentLine.length) {
+      fullText += currentLine.charAt(charIndex);
+      charIndex++;
+    } else {
+      fullText += "\n";
+      lineIndex++;
+      charIndex = 0;
+    }
+    
+    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+    setTimeout(type, charIndex === 0 ? 400 : 20);
+  } else {
+    setTimeout(hideCursor, 400);
+  }
+}
+
+document.addEventListener('click', skipAnimation);
+document.addEventListener('keydown', (e) => {
+  if (e.key === " " || e.key === "Enter") skipAnimation();
+});
+
+type();
 </script>
 
 </body>
