@@ -85,4 +85,16 @@ pre, .ascii {
 html, body {
   overflow-x: hidden !important;
   max-width: 100% !important;
+   /* ====================== 
+   תיקון גלובלי לכל הלינקים באתר 
+   ====================== */
+a, a:hover, a:visited, a:active, a:focus {
+  color: #00ff00 !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #00ff00 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
 }
