@@ -78,16 +78,16 @@
       cursor: pointer;
     }
 
-    /* DRAGGABLE MODAL */
+    /* DRAGGABLE MODAL - שחור ונקי */
     .modal {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: #111111;
-      border: 3px solid #00ff00;
-      box-shadow: 0 0 40px rgba(0, 255, 0, 0.5);
+      background: #000000;
+      border: 2px solid #00ff00;
+      box-shadow: none; /* ביטלתי את הזוהר */
       z-index: 1000;
       width: 90%;
       max-width: 900px;
@@ -96,7 +96,7 @@
     }
 
     .modal-header {
-      background: #1a1a1a;
+      background: #111111;
       padding: 10px 15px;
       border-bottom: 2px solid #00ff00;
       cursor: move;
@@ -132,6 +132,14 @@
     .modal-images img {
       width: 100%;
       border: 1px solid #00ff0044;
+    }
+
+    .back-container {
+      max-width: 720px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+      text-align: left;
+      direction: ltr;
     }
   </style>
 </head>
@@ -169,6 +177,11 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
   </div>
 </div>
 
+<!-- כפתור חזרה -->
+<div class="back-container">
+  <a href="index.html">&gt; BACK TO MAIN TERMINAL</a>
+</div>
+
 <!-- DRAGGABLE MODAL -->
 <div id="project-modal" class="modal">
   <div class="modal-header" id="modal-header">
@@ -182,7 +195,7 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 </div>
 
 <script>
-// נתוני הפרויקטים - שנה לפי הצורך
+// נתוני הפרויקטים
 const projectsData = [
   {
     title: "01 — MOUTG X",
@@ -214,13 +227,16 @@ function openProject(index) {
 
   const modal = document.getElementById('project-modal');
   modal.style.display = 'block';
+  modal.style.top = '50%';
+  modal.style.left = '50%';
+  modal.style.transform = 'translate(-50%, -50%)';
 }
 
 function closeModal() {
   document.getElementById('project-modal').style.display = 'none';
 }
 
-// Drag functionality
+// Drag
 const modal = document.getElementById('project-modal');
 const header = document.getElementById('modal-header');
 
@@ -243,7 +259,7 @@ document.addEventListener('mousemove', (e) => {
 
 document.addEventListener('mouseup', () => isDragging = false);
 
-// Typing Animation (short)
+// Typing Animation
 const lines = ["user@kryptokat:~$ projects.txt", "", "selected works archive", ""];
 const typingText = document.getElementById('typing-text');
 let fullText = "", lineIndex = 0, charIndex = 0, isSkipped = false;
