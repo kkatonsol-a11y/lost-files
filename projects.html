@@ -4,170 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L O S T - F I L E S | Projects</title>
-  <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="style.css" rel="stylesheet">
   
   <style>
-    .ascii {
-      font-family: "Courier New", Courier, monospace;
-      font-size: 15px;
-      line-height: 1.05;
-      white-space: pre;
-      text-align: left;
-      margin: 30px auto;
-      color: #00ff00;
-      background: #000000;
-      display: block;
-      width: fit-content;
-      padding: 20px 25px;
-      direction: ltr;
-      unicode-bidi: bidi-override;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
+    body { background:#000; color:#00ff00; font-family: "Courier New", monospace; }
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      max-width: 1100px;
+      max-width: 900px;
       margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
       padding: 0 20px;
     }
-
     .project-card {
-      background: #0a0a0a;
-      border: 2px solid #00ff00;
-      padding: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
+      background: #111;
+      border: 1px solid #00ff00;
+      padding: 20px;
+      transition: all 0.3s;
     }
-
     .project-card:hover {
-      border-color: #00ff41;
-      background: #111111;
+      border-color: #00ff88;
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0,255,0,0.2);
     }
-
-    .project-title {
+    .project-title { font-size: 1.3em; margin: 10px 0; }
+    .project-desc { opacity: 0.9; line-height: 1.5; }
+    .read-more {
       color: #00ff00;
-      font-size: 1.1em;
-      margin: 8px 0 12px 0;
-      text-align: center;
+      text-decoration: none;
+      margin-top: 15px;
+      display: inline-block;
     }
-
-    .project-card img {
-      width: 100%;
-      height: 110px;
-      object-fit: cover;
-      border: 1px solid #00ff0044;
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .ascii { font-size: 6.5px; padding: 12px 8px; }
-      .projects-grid { grid-template-columns: 1fr; }
-    }
+    .read-more:hover { color: #fff; }
   </style>
 </head>
 <body>
 
-<pre class="ascii">
-$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
-$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
-$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
-$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  
-$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
-$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
-$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
-\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
+<pre class="ascii" style="margin:30px auto; font-size:14px;">
+[ PROJECTS ARCHIVE ]
 </pre>
 
-<div class="terminal-output">
-  <span id="typing-text"></span><span class="cursor"> </span>
+<div class="projects-grid" id="projects-container">
+  <!-- יתמלא ע"י JS -->
 </div>
 
-<div class="projects-grid" id="projects-grid"></div>
-
 <script>
-// ====================== TYPING ======================
-const lines = [
-  "user@kryptokat:~/lost-files $ ls projects/",
-  "",
-  "loading archive...",
-  ""
-];
-
-const typingText = document.getElementById('typing-text');
-let fullText = "";
-let lineIndex = 0;
-let charIndex = 0;
-let isSkipped = false;
-
-function skipAnimation() {
-  if (isSkipped) return;
-  isSkipped = true;
-  fullText = lines.join('\n');
-  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  document.querySelector('.cursor').style.display = 'none';
-  loadProjects();
-}
-
-function type() {
-  if (isSkipped) return;
-  if (lineIndex < lines.length) {
-    const currentLine = lines[lineIndex];
-    if (charIndex < currentLine.length) {
-      fullText += currentLine.charAt(charIndex);
-      charIndex++;
-    } else {
-      fullText += "\n";
-      lineIndex++;
-      charIndex = 0;
-    }
-    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-    setTimeout(type, charIndex === 0 ? 400 : 20);
-  } else {
-    loadProjects();
-  }
-}
-
-// ====================== PROJECTS ======================
+// נתוני הפרויקטים - כאן תוסיף פרויקטים חדשים
 const projects = [
   {
-    title: "PROJECT ALPHA",
-    images: ["img/alpha1.jpg", "img/alpha2.jpg", "img/alpha3.jpg"],
-    link: "project-alpha.html"
+    id: "01",
+    title: "מותג X",
+    shortDesc: "עיצוב מותג מלא + זהות ויזואלית + אתר",
+    link: "project-01.html"
   },
   {
-    title: "NEON VOID",
-    images: ["img/neon1.jpg", "img/neon2.jpg", "img/neon3.jpg"],
-    link: "project-neonvoid.html"
+    id: "02",
+    title: "סדרת איורים - NEON SOUL",
+    shortDesc: "סדרת דמויות ואיורים דיגיטליים",
+    link: "project-02.html"
+  },
+  {
+    id: "03",
+    title: "פלטפורמה - KILL THE BANKS",
+    shortDesc: "אתר + מיתוג + תוכן",
+    link: "project-03.html"
   }
 ];
 
-function loadProjects() {
-  const container = document.getElementById('projects-grid');
-  container.innerHTML = '';
+const container = document.getElementById('projects-container');
 
-  projects.forEach(project => {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.innerHTML = `
-      <div class="project-title">${project.title}</div>
-      <img src="${project.images[0]}" alt="${project.title}">
-      <img src="${project.images[1]}" alt="${project.title}">
-      <img src="${project.images[2]}" alt="${project.title}">
-    `;
-    card.onclick = () => window.location.href = project.link;
-    container.appendChild(card);
-  });
-}
-
-document.addEventListener('click', skipAnimation);
-document.addEventListener('keydown', (e) => {
-  if (e.key === " " || e.key === "Enter") skipAnimation();
+projects.forEach(p => {
+  container.innerHTML += `
+    <div class="project-card">
+      <div class="project-title">${p.title}</div>
+      <div class="project-desc">${p.shortDesc}</div>
+      <a href="${p.link}" class="read-more">&gt; READ MORE</a>
+    </div>
+  `;
 });
-
-type();
 </script>
 
 </body>
