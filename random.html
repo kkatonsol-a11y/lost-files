@@ -8,46 +8,59 @@
   
   <style>
     body { background:#000; color:#00ff00; font-family:"Courier New", monospace; }
-    .projects-grid {
-      max-width: 900px;
+    .gallery {
+      max-width: 1100px;
       margin: 40px auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 15px;
       padding: 0 20px;
     }
-    .project-card {
-      background: #111;
-      border: 1px solid #00ff00;
-      padding: 20px;
-      transition: all 0.2s;
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #00ff0044;
+      cursor: pointer;
     }
-    .project-card:hover {
-      border-color: #00ff88;
-      transform: translateY(-3px);
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
     }
-    .project-title { font-size: 1.3em; margin: 10px 0; }
-    .project-desc { opacity: 0.9; line-height: 1.5; }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      color: #00ff00;
+      padding: 20px 15px 15px;
+      font-size: 1.1em;
+    }
   </style>
 </head>
 <body>
 
-<pre class="ascii"> [ PROJECTS ARCHIVE ] </pre>
+<pre class="ascii"> [ PROJECT GALLERY ] </pre>
 
-<div class="projects-grid">
-  <a href="project-moutgx.html" class="project-card">
-    <div class="project-title">01 — MOUTG X</div>
-    <div class="project-desc">עיצוב מותג מלא + אתר תדמית.</div>
+<div class="gallery">
+  <a href="project-moutgx.html" class="gallery-item">
+    <img src="images/projects/moutg-thumb.jpg" alt="MOUTG X">
+    <div class="gallery-overlay">MOUTG X</div>
   </a>
 
-  <a href="project-neonsoul.html" class="project-card">
-    <div class="project-title">02 — NEON SOUL</div>
-    <div class="project-desc">סדרת איורים דיגיטליים.</div>
+  <a href="project-neonsoul.html" class="gallery-item">
+    <img src="images/projects/neon-thumb.jpg" alt="NEON SOUL">
+    <div class="gallery-overlay">NEON SOUL</div>
   </a>
 
-  <a href="project-ktb.html" class="project-card">
-    <div class="project-title">03 — KILL THE BANKS</div>
-    <div class="project-desc">מיתוג + אתר לפלטפורמה.</div>
+  <a href="project-ktb.html" class="gallery-item">
+    <img src="images/projects/ktb-thumb.jpg" alt="KILL THE BANKS">
+    <div class="gallery-overlay">KILL THE BANKS</div>
   </a>
 </div>
 
