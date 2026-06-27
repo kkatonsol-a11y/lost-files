@@ -19,33 +19,28 @@
     .random-item {
       border: 1px solid #00ff0044;
       overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .random-item:hover {
+      transform: scale(1.05);
+      border-color: #00ff00;
     }
     .random-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-    .random-item:hover img {
-      transform: scale(1.1);
+      display: block;
     }
   </style>
 </head>
 <body>
 
-<pre class="ascii"> [ RANDOM FILES ] </pre>
+<pre class="ascii"> [ RANDOM FILES ARCHIVE ] </pre>
 
 <div class="random-grid">
   <div class="random-item">
-    <img src="images/random/1.jpg" alt="">
+    <img src="images/random/SF_BOX2.png" alt="SF BOX">
   </div>
-  <div class="random-item">
-    <img src="images/random/2.jpg" alt="">
-  </div>
-  <div class="random-item">
-    <img src="images/random/3.jpg" alt="">
-  </div>
-  <!-- הוסף עוד כמה -->
+  
+  <!-- הוסף כאן עוד תמונות -->
 </div>
 
 </body>
