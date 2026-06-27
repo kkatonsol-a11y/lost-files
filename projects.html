@@ -214,50 +214,6 @@ const projectsData = [
 ];
 
 let isDragging = false;
-let currentX = 0, currentY = 0, initialX = 0, initialY = 0;
-
-function openProject(index) {
-  const p = projectsData[index];
-  document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-desc').innerHTML = `<p>${p.desc}</p>`;
-
-  const imagesDiv = document.getElementById('modal-images');
-  imagesDiv.innerHTML = p.images.map(src => `<img src="${src}" alt="">`).join('');
-
-  const modal = document.getElementById('project-modal');
-  modal.style.display = 'block';
-  modal.style.top = '50%';
-  modal.style.left = '50%';
-  modal.style.transform = 'translate(-50%, -50%)';
-}
-
-function closeModal() {
-  document.getElementById('project-modal').style.display = 'none';
-}
-
-// Drag
-const modal = document.getElementById('project-modal');
-const header = document.getElementById('modal-header');
-
-header.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  initialX = e.clientX - currentX;
-  initialY = e.clientY - currentY;
-});
-
-document.addEventListener('mousemove', (e) => {
-  if (isDragging) {
-    e.preventDefault();
-    currentX = e.clientX - initialX;
-    currentY = e.clientY - initialY;
-    modal.style.left = currentX + 'px';
-    modal.style.top = currentY + 'px';
-    modal.style.transform = 'none';
-  }
-});
-
-document.addEventListener('mouseup', () => isDragging = false);
-
 // Typing Animation
 const lines = ["user@kryptokat:~$ projects.txt", "", "selected works archive", ""];
 const typingText = document.getElementById('typing-text');
