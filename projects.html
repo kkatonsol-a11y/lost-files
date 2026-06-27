@@ -61,7 +61,6 @@
     }
     a:hover {
       color: #ffffff !important;
-      text-decoration: underline;
     }
 
     .projects-container {
@@ -77,37 +76,12 @@
       direction: ltr;
     }
 
-    .project-item:last-child {
-      border-bottom: none;
-    }
-
-    .project-title {
-      font-size: 1.25em;
-      margin-bottom: 8px;
-    }
-
-    .project-desc {
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    .read-more {
-      color: #00ff00;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 12px;
-    }
-
-    /* כפתור חזרה בצד שמאל */
-    .back-link {
-      display: inline-block;
-      margin: 50px 20px 40px;
-      color: #00ff00;
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-      color: #ffffff;
+    .back-container {
+      max-width: 720px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+      text-align: left;     /* כפייה לשמאל */
+      direction: ltr;       /* כפייה לשמאל */
     }
 
     @media (max-width: 768px) {
@@ -156,8 +130,8 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 
 </div>
 
-<!-- כפתור חזרה בצד שמאל -->
-<div class="back-link">
+<!-- כפתור חזרה - בצד שמאל -->
+<div class="back-container">
   <a href="index.html">&lt; BACK TO MAIN TERMINAL</a>
 </div>
 
