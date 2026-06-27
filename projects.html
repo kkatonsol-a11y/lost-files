@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L O S T - F I L E S | Projects</title>
+  <title>L O S T - F I L E S | PROJECTS</title>
   
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   
@@ -160,7 +160,8 @@ const lines = [
   "selected works archive",
   "",
   "loading projects...",
-  ""
+  "",
+  "<a href='index.html'>&gt; back to main terminal</a>"   <!-- כפתור חזרה כמו ב-About -->
 ];
 
 const typingText = document.getElementById('typing-text');
@@ -174,7 +175,8 @@ function skipAnimation() {
   isSkipped = true;
   fullText = lines.join('\n');
   typingText.innerHTML = fullText.replace(/\n/g, '<br>');
-  document.querySelector('.cursor').style.display = 'none';
+  const cursor = document.querySelector('.cursor');
+  if (cursor) cursor.style.display = 'none';
 }
 
 function type() {
