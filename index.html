@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L O S T - F I L E S</title>
+  
+  <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  
+  <style>
+    .ascii {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 15px;
+      line-height: 1.05;
+      white-space: pre;
+      text-align: left;
+      margin: 30px auto;
+      color: #00ff00;
+      background: #000000;
+      display: block;
+      width: fit-content;
+      padding: 20px 25px;
+      direction: ltr;
+      unicode-bidi: bidi-override;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .terminal-output {
+      direction: ltr;
+      text-align: left;
+      margin: 25px auto;
+      max-width: 720px;
+      padding: 0 20px;
+      font-family: "Courier New", Courier, monospace;
+      color: #00ff00;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: #00ff00;
+      width: 9px;
+      height: 18px;
+      vertical-align: middle;
+      animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ==================== BLOG TERMINAL ==================== */
+    .blog-terminal {
+      font-family: 'Courier New', monospace;
+      background: #0a0a0a;
+      color: #00ff00;
+      border: 3px solid #00ff00;
+      max-width: 720px;
+      margin: 40px auto;
+      overflow: hidden;
+    }
+
+    .blog-header {
+      background: #111111;
+      padding: 10px 16px;
+      border-bottom: 2px solid #00ff00;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      direction: ltr !important;
+      justify-content: flex-start !important;
+    }
+
+    .blog-feed {
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: #00ff00 #111;
+    }
+
+    .blog-feed::-webkit-scrollbar-thumb {
+      background-color: #00ff00;
+    }
+
+    .blog-post {
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #00ff0044;
+      text-align: left;
+    }
+
+    .blog-post:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .ascii { font-size: 6.5px; padding: 12px 8px; }
+      .terminal-output { padding: 0 12px; font-size: 14.5px; }
+      .cursor { width: 7px; height: 15px; }
+      .blog-feed { max-height: 340px; }
+    }
+  </style>
+</head>
+<body>
+
+<pre class="ascii">
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
+</pre>
+
+<div class="terminal-output">
+  <span id="typing-text"></span><span class="cursor"> </span>
+</div>
+
+<!-- ====================== BLOG TERMINAL ====================== -->
+<div id="blog-terminal" class="blog-terminal hidden">
+  <div class="blog-header">
+    <span class="font-mono">● //lost-files_updates.log</span>
+  </div>
+  <div class="blog-feed" id="blog-posts"></div>
+</div>
+
+<script>
+// ==================== JSONBin Configuration ====================
+const BIN_ID = "6a2c6146f5f4af5e29e886dc";
+const MASTER_KEY = "$2a$10$FFxxKWesqAaFV3tRAO.9ROMGdNNWKUbLVH.F7/dBESD46zS1czuD6";
+
+async function fetchPosts() {
+  try {
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: {
+        "X-Master-Key": MASTER_KEY
+      }
+    });
+    const data = await response.json();
+    return data.record.posts || [];
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
+}
+
+// ====================== BLOG FEED ======================
+async function loadBlogPosts() {
+  const posts = await fetchPosts();
+  const container = document.getElementById('blog-posts');
+  container.innerHTML = '';
+
+  if (posts.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:60px 20px; opacity:0.6;">
+        <p style="color:#00ff00;">No posts in the archive yet...</p>
+      </div>`;
+    return;
+  }
+
+  posts.reverse().forEach((post, index) => {
+    const div = document.createElement('div');
+    div.className = 'blog-post';
+    div.innerHTML = `
+      <div style="color:#00ff00; opacity:0.7; font-size:0.85em; margin-bottom:4px;">
+        ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+      </div>
+      <div style="color:#00ff00; font-weight:bold; font-size:1.1em; margin-bottom:8px;">
+        ${post.title}
+      </div>
+      <div style="color:#00ff00; opacity:0.9; line-height:1.5;">
+        ${post.content.replace(/<[^>]+>/g, ' ').substring(0, 180)}...
+      </div>
+      <a href="post.html?id=${index}" 
+         style="display:inline-block; margin-top:12px; color:#00ff00; border:1px solid #00ff00; padding:4px 12px; font-size:0.85em; text-decoration:none;">
+        READ FULL ENTRY →
+      </a>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// ====================== TYPING ANIMATION ======================
+const lines = [
+  "user@kryptokat:~$ welcome.txt",
+  "インターネットが大好きです",
+  "",
+  "lost files OS v0.1 — status: online",
+  "",
+  "available links:",
+  "> about.html",
+  "> projects.html",
+  "> random.html",
+  "> contact.html",
+];
+
+const typingText = document.getElementById('typing-text');
+let fullText = "";
+let lineIndex = 0;
+let charIndex = 0;
+let isSkipped = false;
+
+function skipAnimation() {
+  if (isSkipped) return;
+  isSkipped = true;
+  fullText = lines.join('\n');
+  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+  document.querySelector('.cursor').style.display = 'none';
+  makeLinksClickable();
+  showBlog();
+}
+
+function type() {
+  if (isSkipped) return;
+  if (lineIndex < lines.length) {
+    const currentLine = lines[lineIndex];
+    if (charIndex < currentLine.length) {
+      fullText += currentLine.charAt(charIndex);
+      charIndex++;
+    } else {
+      fullText += "\n";
+      lineIndex++;
+      charIndex = 0;
+    }
+    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+    setTimeout(type, charIndex === 0 ? 400 : 18);
+  } else {
+    setTimeout(() => {
+      makeLinksClickable();
+      showBlog();
+    }, 600);
+  }
+}
+
+function makeLinksClickable() {
+  let html = typingText.innerHTML;
+  html = html.replace(/&gt; about\.html/g, '<a href="/about.html" class="menu-item">&gt; about.html</a>');
+  html = html.replace(/&gt; projects\.html/g, '<a href="/projects.html" class="menu-item">&gt; projects.html</a>');
+  html = html.replace(/&gt; random\.html/g, '<a href="/random.html" class="menu-item">&gt; random.html</a>');
+  html = html.replace(/&gt; contact\.html/g, '<a href="/contact.html" class="menu-item">&gt; contact.html</a>');
+  typingText.innerHTML = html;
+}
+
+function showBlog() {
+  const blog = document.getElementById('blog-terminal');
+  blog.classList.remove('hidden');
+  loadBlogPosts();
+}
+
+// Event Listeners
+document.addEventListener('click', skipAnimation);
+document.addEventListener('keydown', (e) => {
+  if (e.key === " " || e.key === "Enter") skipAnimation();
+});
+
+type();   // Start typing animation
+</script>
+</body>
+</html>

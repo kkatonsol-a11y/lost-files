@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L O S T - F I L E S | Contact</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  
+  <style>
+    .ascii {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 15px;
+      line-height: 1.05;
+      white-space: pre;
+      text-align: left;
+      margin: 30px auto;
+      color: #00ff00;
+      background: #000000;
+      display: block;
+      width: fit-content;
+      padding: 20px 25px;
+      direction: ltr;
+      unicode-bidi: bidi-override;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .terminal-output {
+      direction: ltr;
+      text-align: left;
+      margin: 25px auto;
+      max-width: 720px;
+      padding: 0 20px;
+      font-family: "Courier New", Courier, monospace;
+      color: #00ff00;
+      line-height: 1.8;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: #00ff00;
+      width: 9px;
+      height: 18px;
+      vertical-align: middle;
+      animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .contact-link {
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    .contact-link:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .ascii { font-size: 6.5px; padding: 12px 8px; }
+      .terminal-output { padding: 0 12px; font-size: 15px; }
+      .cursor { width: 7px; height: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<pre class="ascii">
+$$\       $$$$$$\   $$$$$$\ $$$$$$$$\       $$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$ |     $$  __$$\ $$  __$$\\__$$  __|      $$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
+$$ |     $$ /  $$ |$$ /  \__|  $$ |         $$ |        $$ |  $$ |      $$ |      $$ /  \__|
+$$ |     $$ |  $$ |\$$$$$$\    $$ |         $$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  
+$$ |     $$ |  $$ | \____$$\   $$ |         $$  __|     $$ |  $$ |      $$  __|    \____$$\ 
+$$ |     $$ |  $$ |$$\   $$ |  $$ |         $$ |        $$ |  $$ |      $$ |      $$\   $$ |
+$$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\________|\______/  \______/   \__|         \__|      \______|\________|\________| \______/ 
+</pre>
+
+<div class="terminal-output">
+  <span id="typing-text"></span><span class="cursor"> </span>
+</div>
+
+<script>
+const lines = [
+  "user@kryptokat:~$ contact.txt",
+  "",
+  "you can reach me at:",
+  "",
+  "- <a href='https://x.com/neverofflin3' target='_blank' class='contact-link'>Twitter / X</a>",
+  "",
+  "- <a href='https://t.me/kill_the_banks' target='_blank' class='contact-link'>Telegram</a>",
+  "",
+  "kryptokat@killthebanks.com",
+  "let's talk.",
+  "",
+  "<a href='/index.html' class='menu-item'>&gt; back to main terminal</a>"
+];
+
+const typingText = document.getElementById('typing-text');
+let fullText = "";
+let lineIndex = 0;
+let charIndex = 0;
+let isSkipped = false;
+
+function skipAnimation() {
+  if (isSkipped) return;
+  isSkipped = true;
+  fullText = lines.join('\n');
+  typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+  document.querySelector('.cursor').style.display = 'none';
+}
+
+function type() {
+  if (isSkipped) return;
+  if (lineIndex < lines.length) {
+    const currentLine = lines[lineIndex];
+    if (charIndex < currentLine.length) {
+      fullText += currentLine.charAt(charIndex);
+      charIndex++;
+    } else {
+      fullText += "\n";
+      lineIndex++;
+      charIndex = 0;
+    }
+    typingText.innerHTML = fullText.replace(/\n/g, '<br>');
+    setTimeout(type, charIndex === 0 ? 400 : 20);
+  }
+}
+
+document.addEventListener('click', skipAnimation);
+document.addEventListener('keydown', (e) => {
+  if (e.key === " " || e.key === "Enter") skipAnimation();
+});
+
+type();
+</script>
+
+</body>
+</html>

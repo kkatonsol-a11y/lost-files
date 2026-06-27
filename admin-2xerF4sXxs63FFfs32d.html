@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L O S T - F I L E S | ADMIN</title>
+  <style>
+    body { background:#000; color:#00ff00; font-family:'Courier New', monospace; margin:0; padding:20px; }
+    .terminal { border:3px solid #00ff00; background:#0a0a0a; max-width:800px; margin:40px auto; overflow:hidden; }
+    .header { background:#111; padding:12px 16px; border-bottom:2px solid #00ff00; font-weight:bold; }
+    input, textarea { background:#000; border:1px solid #00ff00; color:#00ff00; font-family:inherit; padding:10px; width:100%; margin:8px 0; box-sizing:border-box; }
+    button { background:#000; color:#00ff00; border:2px solid #00ff00; padding:10px 24px; font-family:inherit; cursor:pointer; margin:5px; }
+    button:hover { background:#00ff00; color:#000; }
+    .login-box { padding:80px 20px; text-align:center; }
+  </style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="header">user@kryptokat:~/lost-files $ admin-panel</div>
+  
+  <div id="loginScreen" class="login-box">
+    <h2>ADMIN ACCESS</h2>
+    <p style="margin:25px 0 15px 0;">ENTER PASSWORD:</p>
+    <input type="password" id="password" placeholder="••••••••" style="max-width:320px; text-align:center;">
+    <br><br>
+    <button onclick="checkPassword()">LOGIN</button>
+  </div>
+
+  <div id="adminPanel" style="display:none; padding:20px;">
+    <h2>NEW ENTRY</h2>
+    <input type="text" id="title" placeholder="POST TITLE">
+    <textarea id="content" rows="14" placeholder="Write your post here..."></textarea>
+    
+    <button onclick="savePost()">SAVE POST</button>
+    <button onclick="logout()">LOGOUT</button>
+
+    <h2 style="margin-top:40px;">EXISTING POSTS</h2>
+    <div id="existingPosts"></div>
+  </div>
+</div>
+
+<script>
+// ==================== JSONBin ====================
+const BIN_ID = "6a2c6146f5f4af5e29e886dc";
+const MASTER_KEY = "$2a$10$FFxxKWesqAaFV3tRAO.9ROMGdNNWKUbLVH.F7/dBESD46zS1czuD6";
+
+const ADMIN_PASSWORD = "lostfiles2025";
+
+async function apiRequest(method, body = null) {
+  const url = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+  const options = {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+      "X-Master-Key": MASTER_KEY
+    }
+  };
+  if (body) options.body = JSON.stringify(body);
+
+  const res = await fetch(url, options);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+// Login
+function checkPassword() {
+  if (document.getElementById('password').value === ADMIN_PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    loadExistingPosts();
+  } else {
+    alert("Incorrect Password");
+  }
+}
+
+function logout() {
+  if (confirm("Logout?")) location.reload();
+}
+
+// Save Post
+async function savePost() {
+  const title = document.getElementById('title').value.trim();
+  const content = document.getElementById('content').value.trim();
+  if (!title || !content) return alert("Title and content required");
+
+  try {
+    let data = await apiRequest("GET");
+    let posts = data.record ? data.record.posts || [] : [];
+    
+    posts.push({ title, content, date: new Date().toISOString() });
+    
+    await apiRequest("PUT", { posts: posts });
+    
+    alert("✅ Post saved successfully!");
+    document.getElementById('title').value = '';
+    document.getElementById('content').value = '';
+    loadExistingPosts();
+  } catch(e) {
+    console.error(e);
+    alert("❌ Error saving post. Check console (F12)");
+  }
+}
+
+async function loadExistingPosts() {
+  try {
+    const data = await apiRequest("GET");
+    const posts = data.record ? data.record.posts || [] : [];
+    const container = document.getElementById('existingPosts');
+    container.innerHTML = '';
+
+    if (posts.length === 0) {
+      container.innerHTML = '<p style="opacity:0.6;">No posts yet...</p>';
+      return;
+    }
+
+    posts.forEach((post, i) => {
+      const div = document.createElement('div');
+      div.style.borderBottom = "1px dashed #00ff0044";
+      div.style.padding = "12px 0";
+      div.innerHTML = `
+        <strong>${post.title}</strong><br>
+        <small>${new Date(post.date).toLocaleDateString('en-US')}</small>
+        <button onclick="deletePost(${i})" style="float:right;color:#ff4444;background:none;border:none;">DELETE</button>
+      `;
+      container.appendChild(div);
+    });
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+async function deletePost(index) {
+  if (!confirm("Delete?")) return;
+  try {
+    let data = await apiRequest("GET");
+    let posts = data.record ? data.record.posts || [] : [];
+    posts.splice(index, 1);
+    await apiRequest("PUT", { posts: posts });
+    loadExistingPosts();
+  } catch(e) {
+    alert("Error deleting");
+  }
+}
+</script>
+</body>
+</html>

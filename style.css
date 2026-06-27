@@ -1,0 +1,98 @@
+/* ====================== 
+   בסיס - טרמינל 
+   ====================== */
+body {
+  background-color: #000000;
+  color: #00ff00;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 30px 20px;
+  overflow-x: hidden;
+}
+
+pre, .ascii {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  line-height: 1.05;
+  white-space: pre;
+  color: #00ff00;
+  background: #000000;
+  padding: 25px 30px;
+  margin: 40px auto;
+  width: fit-content;
+  display: block;
+  direction: ltr;
+  unicode-bidi: bidi-override;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ====================== 
+   טקסט טרמינל 
+   ====================== */
+.terminal-output {
+  direction: ltr;
+  text-align: left;
+  margin: 30px auto;
+  max-width: 720px;
+  padding-left: 20px;
+}
+
+/* ====================== 
+   תפריט 
+   ====================== */
+.menu {
+  margin: 15px 0 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-item {
+  display: block;
+  padding: 8px 14px;
+  color: #00ff00 !important;
+  text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  width: fit-content;
+}
+
+.menu-item:hover,
+.menu-item:active {
+  background-color: #00ff00 !important;
+  color: #000000 !important;
+  border-color: #00ff00;
+  transform: translateX(10px);
+}
+
+/* ====================== 
+   RESPONSIVE - מובייל 
+   ====================== */
+@media (max-width: 768px) {
+  body {
+    padding: 10px 8px;
+  }
+  
+  .ascii, pre {
+    font-size: 8px;
+    padding: 12px 8px;
+    margin: 20px auto;
+  }
+
+  .terminal-output {
+    padding-left: 12px;
+    font-size: 15px;
+  }
+}
+
+/* ====================== 
+   כיבוי גלילה אופקית 
+   ====================== */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
