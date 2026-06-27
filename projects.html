@@ -55,12 +55,16 @@
       50% { opacity: 0; }
     }
 
+    /* לינקים - ירוקים + קו ירוק על hover */
     a {
       color: #00ff00 !important;
       text-decoration: none;
     }
+
     a:hover {
-      color: #ffffff !important;
+      color: #00ff00 !important;           /* נשאר ירוק */
+      border-bottom: 1px solid #00ff00;   /* קו ירוק מתחת */
+      padding-bottom: 2px;
     }
 
     .projects-container {
@@ -76,12 +80,26 @@
       direction: ltr;
     }
 
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-title {
+      font-size: 1.25em;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
     .back-container {
       max-width: 720px;
       margin: 60px auto 40px;
       padding: 0 20px;
-      text-align: left;     /* כפייה לשמאל */
-      direction: ltr;       /* כפייה לשמאל */
+      text-align: left;
+      direction: ltr;
     }
 
     @media (max-width: 768px) {
@@ -130,9 +148,8 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
 
 </div>
 
-<!-- כפתור חזרה - בצד שמאל -->
 <div class="back-container">
- <a href="index.html">&gt; BACK TO MAIN TERMINAL</a>
+  <a href="index.html">&gt; BACK TO MAIN TERMINAL</a>
 </div>
 
 <script>
