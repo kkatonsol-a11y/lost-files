@@ -55,6 +55,7 @@
       50% { opacity: 0; }
     }
 
+    /* לינקים ירוקים */
     a {
       color: #00ff00 !important;
       text-decoration: none;
@@ -128,19 +129,19 @@ $$$$$$$$\ $$$$$$  |\$$$$$$  |  $$ |         $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$
   <div class="project-item">
     <div class="project-title">01 — MOUTG X</div>
     <div class="project-desc">עיצוב מותג מלא, זהות ויזואלית, אתר תדמית וחומרי שיווק.</div>
-    <a href="project-01.html" class="read-more">&gt; VIEW PROJECT</a>
+    <a href="project-01.html">&gt; VIEW PROJECT</a>
   </div>
 
   <div class="project-item">
     <div class="project-title">02 — NEON SOUL</div>
     <div class="project-desc">סדרת איורים דיגיטליים ועולם ויזואלי.</div>
-    <a href="project-02.html" class="read-more">&gt; VIEW PROJECT</a>
+    <a href="project-02.html">&gt; VIEW PROJECT</a>
   </div>
 
   <div class="project-item">
     <div class="project-title">03 — KILL THE BANKS</div>
     <div class="project-desc">מיתוג מלא, אתר ותוכן שיווקי לפלטפורמה.</div>
-    <a href="project-03.html" class="read-more">&gt; VIEW PROJECT</a>
+    <a href="project-03.html">&gt; VIEW PROJECT</a>
   </div>
 
 </div>
@@ -197,8 +198,7 @@ function type() {
     typingText.innerHTML = fullText.replace(/\n/g, '<br>');
     setTimeout(type, charIndex === 0 ? 400 : 20);
   } else {
-    // האנימציה הסתיימה - מסתירים את הסמן
-    setTimeout(hideCursor, 300);
+    setTimeout(hideCursor, 400);
   }
 }
 
